@@ -20,13 +20,21 @@ public class EjemploConexion {
     public Vector traerClientes(){
         Vector vec = new Vector();
         try{
-            DataBase db = new DataBase(new HashMap());
+			HashMap map= new HashMap();
+			map.put("user","root");
+			map.put("password","");
+			map.put("origen_datos","dbtp2");
+            //DataBase db = new DataBase(new HashMap());
+            DataBase db = new DataBase(map);
             ResultSet rst = null;
             Connection cn = db.getConnection();
             Statement s = cn.createStatement();
             rst = s.executeQuery("SELECT * FROM CLIENTE");   
             while(rst.next()){
-                vec.add(rst.getString("idCliente")  + " - " + rst.getString("apellido") + "-" + rst.getString("nombre"));
+                //vec.add(rst.getString("id_cliente")  + " - " + rst.getString("nombre") + "-" + rst.getString("apellido"));
+                vec.add(rst.getString("id_cliente"));
+                vec.add(rst.getString("nombre"));
+                vec.add(rst.getString("apellido"));
             }
         }catch(Exception exc){
             System.out.println("EXCEPCION AL INTENTAR CONECTAR CON LA BASE DE DATOS : " + exc.getMessage());

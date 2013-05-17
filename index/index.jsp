@@ -23,11 +23,9 @@
         
      -->
      <%
-		boolean error=false;//request.getParameter("error");
-		if (request.getParameter("error")!=null)
-			error=Boolean.parseBoolean(request.getParameter("error"));
-		
-			out.println(error);
+		boolean error=Boolean.parseBoolean(request.getParameter("error"));
+		if (error)
+			out.println("<P>Error en nombre de usuario y/o contrase&ntilde;a</P>");
      %>
      <H3>Login</H3>
      <FORM method="post" action="jsp/archivo1.jsp">
